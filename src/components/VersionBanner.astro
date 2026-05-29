@@ -1,0 +1,49 @@
+---
+import {getEntry} from "astro:content";
+import wikiConfig from "../../content/config.ts";
+import Icon from "@/Icon.astro";
+
+const { id } = Astro.params;
+
+const wikiPage = id ? await getEntry('wiki', id) : undefined;
+const version = wikiPage?.data.version
+const versionMatches = version && wikiConfig.version === version
+
+---
+
+{version && <>
+    <div class={`banner ${!versionMatches && 'mismatch'}`}>
+
+        {versionMatches ?
+                <>
+                    <Icon name="success" />
+                    <span>This page has been verified with the latest version {wikiConfig.version}!</span>
+                </>:
+                <>
+                    <Icon name="error" />
+                    <span>This page has not yet been verified with the latest version {wikiConfig.version}</span>
+                </>}
+
+
+    </div>
+</>}
+
+
+<style>
+    .banner {
+        display: flex;
+        gap: 0.3rem;
+        border: 3px solid var(--border);
+        border-radius: 1rem;
+        padding: 0.5rem;
+        margin: 1rem 0 1rem 0;
+    }
+
+    .banner.mismatch {
+        color: #ff0000;
+
+        .icon {
+            color: red;
+        }
+    }
+</style>

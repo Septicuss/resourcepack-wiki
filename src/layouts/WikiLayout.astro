@@ -3,6 +3,7 @@ import Topbar from "@/Topbar.astro";
 import BreadCrumb from '@/BreadCrumb.astro';
 import {dark, light} from "../lib/theme.ts";
 import type {InferEntrySchema} from "astro:content";
+import VersionBanner from "@/VersionBanner.astro";
 
 interface Props {
     title?: string,
@@ -42,7 +43,7 @@ const currentPath = Astro.url.pathname
 
     <div class="content-body">
         <BreadCrumb currentPath={currentPath} wikiPage={wikiPage}/>
-
+        <VersionBanner />
         <slot/>
     </div>
 

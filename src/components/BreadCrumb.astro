@@ -23,11 +23,6 @@ const getBreadcrumbs = (path: string) => {
 
 const breadcrumbs= getBreadcrumbs(currentPath).reverse();
 const isOtherThanHome = wikiPage && currentPath !== '/'
-
-console.log("currentPath: " +currentPath)
-console.log("breadcrumbs: " +breadcrumbs)
-console.log("page: " +JSON.stringify(wikiPage))
-
 ---
 
 {

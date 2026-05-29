@@ -22,11 +22,13 @@ interface WikiThemes {
 
 interface WikiConfig {
     title: string,
+    version: string,
     themes: WikiThemes
 }
 
 const config: WikiConfig = {
     title: 'Resource Pack Wiki',
+    version: '26.1.2',
     themes: {
         light: {
             background: '#ffffff',
