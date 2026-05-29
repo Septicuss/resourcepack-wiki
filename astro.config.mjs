@@ -5,6 +5,8 @@ import mdx from '@astrojs/mdx';
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
+import sitemap from '@astrojs/sitemap';
+
 // Custom plugin to remove dashes (-) caused by leading spaces in headings
 function rehypeCleanHeadings() {
   // @ts-ignore
@@ -23,7 +25,7 @@ function rehypeCleanHeadings() {
 // https://astro.build/config
 export default defineConfig({
   site: 'https://resourcepack.wiki',
-  integrations: [mdx()],
+  integrations: [mdx(), sitemap()],
   markdown: {
     rehypePlugins: [
         rehypeSlug,

@@ -17,7 +17,11 @@ const { Content } = await render(wikiPage)
 
 ---
 
-<WikiLayout title={wikiPage.data.title} wikiPage={wikiPage}>
+<WikiLayout
+        title={wikiPage.data.title}
+        wikiPage={wikiPage}
+        description={wikiPage.data?.description}
+>
 
     <Prose>
         <Content />

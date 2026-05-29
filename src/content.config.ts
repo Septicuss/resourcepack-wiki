@@ -7,6 +7,8 @@ const wiki  = defineCollection({
     schema: z.object({
         title: z.string(),
         version: z.string().optional(),
+        description: z.string().optional(),
+        icon: z.string().optional(),
         slug: z.string().optional()
     })
 })
