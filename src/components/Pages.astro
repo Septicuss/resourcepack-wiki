@@ -17,7 +17,8 @@ const { title, pages } = Astro.props;
 
 ---
 
-<h3>{title}</h3>
+<br />
+<span>{title}</span>
 <div class="pages">
     {pages.map(page => {
         return <>
@@ -32,7 +33,7 @@ const { title, pages } = Astro.props;
 </div>
 
 <style>
-    h3 {
+    span {
         color: var(--textSecondary);
     }
 
