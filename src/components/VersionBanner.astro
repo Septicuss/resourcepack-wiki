@@ -1,30 +1,29 @@
 ---
-import {getEntry} from "astro:content";
 import wikiConfig from "../../content/config.ts";
 import Icon from "@/Icon.astro";
+import {getPage} from "../lib/pages.ts";
 
 const { id } = Astro.params;
 
-const wikiPage = id ? await getEntry('wiki', id) : undefined;
-const version = wikiPage?.data.version
-const versionMatches = version && wikiConfig.version === version
+const page = id ? await getPage(id) : undefined;
+const pageVersion = page?.data.version
+const wikiVersion = wikiConfig.version
 
+const versionMatches = (pageVersion == undefined || wikiVersion === pageVersion)
 ---
 
-{version && <>
+{pageVersion && <>
     <div class={`banner ${!versionMatches && 'mismatch'}`}>
 
         {versionMatches ?
                 <>
                     <Icon name="success" />
-                    <span>This page has been verified with the latest version {wikiConfig.version}!</span>
+                    <span>This page has been verified with the latest version <span class="version">{wikiConfig.version}</span>!</span>
                 </>:
                 <>
                     <Icon name="error" />
-                    <span>This page has not yet been verified with the latest version {wikiConfig.version}</span>
+                    <span>This page has not yet been verified with the latest version <span class="version">{wikiConfig.version}</span></span>
                 </>}
-
-
     </div>
 </>}
 
@@ -45,5 +44,14 @@ const versionMatches = version && wikiConfig.version === version
         .icon {
             color: red;
         }
+
+        .version {
+            color: red;
+        }
+    }
+
+    .version {
+        color: var(--accent);
+        font-weight: bold;
     }
 </style>
