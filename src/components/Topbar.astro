@@ -1,8 +1,19 @@
 ---
 import ThemeButton from "./ThemeButton.astro";
+import {getPage, getPageGitHubLink} from "../lib/pages.ts";
+import TextButton from "@/TextButton.astro";
+
+const slug = Astro.params.id || '/'
+
+const githubLink = await getPageGitHubLink(slug)
 ---
 
 <div class="top-bar">
+    {githubLink &&
+            <TextButton external url={githubLink}>
+                View on GitHub
+            </TextButton>
+    }
     <ThemeButton />
 </div>
 
@@ -10,6 +21,7 @@ import ThemeButton from "./ThemeButton.astro";
     .top-bar {
         display: flex;
         padding: 0.2rem;
+        gap: 1rem;
         flex-direction: row-reverse;
     }
 </style>

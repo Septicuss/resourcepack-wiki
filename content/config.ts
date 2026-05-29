@@ -23,11 +23,13 @@ interface WikiThemes {
 interface WikiConfig {
     title: string,
     version: string,
+    repositoryUrl: string,
     themes: WikiThemes
 }
 
 const config: WikiConfig = {
     title: 'Resource Pack Wiki',
+    repositoryUrl: 'https://github.com/Septicuss/resourcepack-wiki',
     version: '26.1.2',
     themes: {
         light: {

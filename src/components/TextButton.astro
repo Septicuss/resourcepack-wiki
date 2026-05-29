@@ -1,0 +1,49 @@
+---
+
+interface Props {
+    id?: string,
+    ariaLabel?: string;
+    title?: string;
+    external?: boolean,
+    url?: string,
+    type: 'button' | 'a'
+}
+
+const {id, url, ariaLabel, title, external, type} = Astro.props;
+---
+
+{type === 'button' ? (
+    <button id={id}
+            class="button"
+            aria-label={ariaLabel}
+            title={title}>
+        <slot/>
+    </button>
+        ) : (
+    <a id={id}
+       href={url}
+       class="button"
+       aria-label={ariaLabel}
+       title={title}
+       target={external ? '_blank' : undefined}>
+        <slot/>
+    </a>
+)}
+
+<style>
+    button {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    }
+
+    .button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        flex-shrink: 0;
+        color: var(--textHighlight);
+    }
+    .button:hover {
+        color: var(--text);
+    }
+</style>
