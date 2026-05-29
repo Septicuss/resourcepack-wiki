@@ -1,6 +1,6 @@
 name: Deploy to Hetzner
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -30,7 +30,7 @@ jobs:
           server: ${{secrets.FTP_SERVER}}
           username: ${{secrets.FTP_USERNAME}}
           password: ${{secrets.FTP_PASSWORD}}
-          protocol: ftps
+          protocol: ftps-legacy
           port: 22
           local-dir: ./dist/
           server-dir: /public_html/
