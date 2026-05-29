@@ -1,0 +1,104 @@
+---
+import Topbar from "@/Topbar.astro";
+import BreadCrumb from '@/BreadCrumb.astro';
+import {dark, light} from "../lib/theme.ts";
+import type {InferEntrySchema} from "astro:content";
+
+interface Props {
+    title?: string,
+    wikiPage?: {data: InferEntrySchema<'wiki'>},
+}
+
+const { title = "Resource Pack Wiki", wikiPage } = Astro.props;
+
+const currentPath = Astro.url.pathname
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{title}</title>
+
+    <script>
+        import {setTheme} from '../lib/theme.ts';
+
+        setTheme()
+    </script>
+
+    <Fragment set:html={`
+        <style>
+            :root { ${light} }
+            .dark { ${dark} }
+        </style>`
+    }/>
+</head>
+
+<body>
+<div class="content">
+
+    <Topbar/>
+
+    <div class="content-body">
+        <BreadCrumb currentPath={currentPath} wikiPage={wikiPage}/>
+
+        <slot/>
+    </div>
+
+    <div class="space" />
+
+</div>
+</body>
+</html>
+
+
+<style>
+    .content {
+        display: flex;
+        flex-direction: column;
+        width: clamp(20rem, 100%, 45rem);
+        margin: 0 auto;
+        gap: 2rem;
+    }
+
+    .content-body {
+
+    }
+
+    .space {
+        padding-bottom: 10dvh;
+    }
+</style>
+
+<style is:global>
+    summary:hover {
+        cursor: pointer;
+    }
+
+    details::details-content {
+        margin-left: 0.2rem;
+        padding-left: 0.5rem;
+        border-left: 4px solid var(--border);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scrollbar-gutter: stable;
+        overflow-y: scroll;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+        background: var(--background);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+</style>

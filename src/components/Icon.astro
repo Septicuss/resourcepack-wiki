@@ -1,0 +1,28 @@
+---
+import { icons, type IconName } from './icons.tsx';
+
+interface Props {
+    name: IconName;
+    large?: boolean;
+}
+
+const { name, large } = Astro.props
+const icon = icons[name]
+---
+
+<div class:list={["icon", {large: large}]} set:html={icon} />
+<style is:global>
+    .icon {
+        display: inline;
+        color: var(--accent);
+    }
+    .icon svg {
+        aspect-ratio: 1/1;
+        width: 1rem;
+        height: 1rem;
+    }
+    .icon.large svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+</style>

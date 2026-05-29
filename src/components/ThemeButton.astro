@@ -1,0 +1,45 @@
+---
+
+---
+
+<button
+        id="themeToggle"
+        class="theme-toggle"
+        aria-label="Toggle theme"
+        title="Toggle theme"
+>
+    Switch to dark theme
+</button>
+
+<style>
+    .theme-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        flex-shrink: 0;
+        color: var(--textHighlight);
+    }
+    .theme-toggle:hover {
+        color: var(--text);
+    }
+
+</style>
+
+<script>
+    import {getTheme, toggleTheme} from "../lib/theme.ts";
+
+    const toggle = document.getElementById('themeToggle')!;
+    const currentTheme = getTheme()
+
+    function getText(theme: 'dark' | 'light') {
+        return 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme'
+    }
+
+    toggle.innerText = getText(currentTheme)
+
+    toggle.addEventListener('click', () => {
+        const newTheme = toggleTheme()
+        toggle.innerText = getText(newTheme)
+    });
+</script>

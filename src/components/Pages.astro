@@ -1,0 +1,67 @@
+---
+import Icon from "@/Icon.astro";
+import type {IconName} from "@/icons.tsx";
+
+interface Page {
+    title: string,
+    url: string,
+    icon: IconName,
+}
+
+interface Props {
+    title: string,
+    pages: Page[]
+}
+
+const { title, pages } = Astro.props;
+
+---
+
+<h3>{title}</h3>
+<div class="pages">
+    {pages.map(page => {
+        return <>
+            <a href={page.url} class="page">
+                <span class="title">
+                    <Icon name={page.icon ?? 'info'} />
+                    <span>{page.title}</span>
+                </span>
+            </a>
+        </>
+    })}
+</div>
+
+<style>
+    h3 {
+        color: var(--textSecondary);
+    }
+
+    .pages {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+
+    .page {
+        display: flex;
+        padding: 0.3rem 0.9rem 0.3rem 0.5rem;
+        border-radius: 0.3rem;
+
+        font-weight: bold;
+        max-width: 20rem;
+
+        .title {
+            display: flex;
+            gap: 0.5rem;
+
+            span {
+                color: var(--text);
+            }
+        }
+    }
+
+    .page:hover {
+        background-color: var(--hover);
+    }
+
+</style>

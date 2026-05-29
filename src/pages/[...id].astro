@@ -1,0 +1,27 @@
+---
+import {getCollection, render} from "astro:content"
+import WikiLayout from "../layouts/WikiLayout.astro";
+import Prose from "@/Prose.astro";
+
+export async function getStaticPaths() {
+	const wikiPages = await getCollection('wiki')
+    const paths = wikiPages.map(wikiPage => ({
+        params: { id: wikiPage.id },
+        props: { wikiPage }
+    }))
+    return paths
+}
+
+const { wikiPage } = Astro.props
+const { Content } = await render(wikiPage)
+
+---
+
+<WikiLayout title={wikiPage.data.title} wikiPage={wikiPage}>
+
+    <Prose>
+        <Content />
+    </Prose>
+
+    <span class="space" />
+</WikiLayout>

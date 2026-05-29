@@ -1,0 +1,64 @@
+---
+import type {InferEntrySchema} from "astro:content";
+interface Props {
+    currentPath: string,
+    wikiPage?: {data: InferEntrySchema<'wiki'>}
+}
+
+const { currentPath, wikiPage } = Astro.props;
+
+const getBreadcrumbs = (path: string) => {
+    const splitPath = path.split('/');
+    if (path.endsWith("/")) splitPath.pop();
+
+    let breadcrumbs = []
+
+    while (splitPath.length > 2) {
+        splitPath.pop()
+        breadcrumbs.push(splitPath.join('/'))
+    }
+
+    return breadcrumbs
+}
+
+const breadcrumbs= getBreadcrumbs(currentPath).reverse();
+const isOtherThanHome = wikiPage && currentPath !== '/'
+
+console.log("currentPath: " +currentPath)
+console.log("breadcrumbs: " +breadcrumbs)
+console.log("page: " +JSON.stringify(wikiPage))
+
+---
+
+{
+    isOtherThanHome &&
+    <div class="breadcrumbs">
+        <a href="/">Home</a>
+        /
+        {breadcrumbs.map(breadcrumb=>(
+                <>
+                    <a class="breadcrumb" href={breadcrumb}>{breadcrumb.split('/').pop()}</a>/
+                </>
+        ))}
+        <span>{wikiPage.data.title}</span>
+    </div>
+}
+
+
+<style>
+    .breadcrumbs {
+        display:flex;
+        align-content: center;
+        gap: 0.5rem;
+        color: var(--textSecondary);
+
+        a {
+            color: var(--textSecondary) !important;
+        }
+    }
+
+    .breadcrumb {
+
+    }
+</style>
+

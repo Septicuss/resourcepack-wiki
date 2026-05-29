@@ -1,0 +1,61 @@
+---
+title: Resource Pack Wiki
+slug: /
+---
+import Pages from '@/Pages.astro'
+import Icon from '@/Icon.astro'
+
+# <Icon large name="pack" /> Resource Pack Wiki
+
+
+## <Icon name="smile" /> Introduction
+
+Welcome to one of the [oldest](https://www.spigotmc.org/threads/576970) resources for **server-side resource pack development**!
+Here you will find useful resources and tips for developing your own,
+custom and unique servers, resource packs and plugins, utilizing the most recent known mechanics.
+
+
+<details>
+	<summary>**What is server-side resource pack development?**</summary>
+
+	<p>
+		The vanilla Minecraft client is pretty limited in what it can do customization-wise.
+		To get around those limitations we can send a resource pack to the client.
+		The resource pack tells the client which models, textures and sounds to use in-game.
+
+		Server-side plugins can then add functionality based on the previously loaded resource pack.
+		This allows for modded-like content, with the functionality being handled by plugins and
+		visuals handled by a resource pack.
+	</p>
+
+	Examples of what's possible:
+	* Mapping custom font characters to a texture png sheet of emojis, which can then be shown anywhere
+	* Having items with interchangeable models act as furniture in the world as item display entities
+
+	**See more [real world examples](/examples)**
+</details>
+
+
+
+## <Icon name="info" /> Topics
+
+<Pages title="Core" pages={[
+	{title: 'Pack', icon: 'pack', url: '/pack'},
+	{title: 'Fonts', icon: 'font', url: '/fonts'},
+	{title: 'Items', icon: 'item', url: '/items'},
+	{title: 'Blocks', url: '/blocks'},
+	{title: 'Sounds', url: '/sounds'},
+]} />
+
+
+<Pages title="Miscellaneous" pages={[
+	{title: 'Language', url: '/language'},
+	{title: 'Optimization', url: '/optimization'},
+]} />
+
+
+<Pages title="Advanced" pages={[
+	{title: 'Shaders', url: '/shaders'},
+	{title: 'Atlas', url: '/atlas'},
+	{title: 'Entities', url: '/entities'},
+]} />
