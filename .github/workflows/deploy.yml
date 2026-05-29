@@ -1,5 +1,6 @@
 name: Deploy to Hetzner
 on:
+  workflow_dispatch: 
   push:
     branches:
       - main
