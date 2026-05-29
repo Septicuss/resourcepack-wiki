@@ -30,7 +30,7 @@ jobs:
           server: ${{secrets.FTP_SERVER}}
           username: ${{secrets.FTP_USERNAME}}
           password: ${{secrets.FTP_PASSWORD}}
-          protocol: ftps-legacy
+          protocol: ftp
           port: 22
           local-dir: ./dist/
           server-dir: /public_html/
