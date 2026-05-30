@@ -1,9 +1,34 @@
 ---
 title: Pack
 version: 26.1.2
-slug: pack
+description: Basic overview of resource packs.
 ---
 
 # Pack
 
-WIP
+A resource pack is a directory or a ZIP archive of structured files.
+The following pages are recommended reading to gain basic understanding into resource packs.
+
+**Recommended reading**
+> - [Namespaces (minecraft.wiki)](https://minecraft.wiki/w/Identifier#Namespaces)
+> - [Structure (minecraft.wiki)](https://minecraft.wiki/w/Resource_pack#Directory_structure)
+
+### Namespaces
+Namespaces are especially useful for separation of assets. If, say, you had a server with
+multiple gamemodes, you could split their assets like so:
+
+> Example split of gamemode related assets by namespaces.
+```python
+assets/
+   minecraft/ # default namespace
+     font/
+     textures/
+     ...
+   gamemode1/ # namespace
+     textures/
+     ...
+   gamemode2/ # namespace
+     ...
+```
+
+Then, if you say had a font dedicated to custom score numbers, you'd use that font as `gamemode1:score`.
